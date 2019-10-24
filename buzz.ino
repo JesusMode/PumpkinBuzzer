@@ -1,29 +1,18 @@
-int buzzDis;
+int buzzDis = 500;
 void buzz() {
 
-  if (buzzDis > 100) {
+  if (buzzDis > 125) {
     if (xtone > 200) {
       xtone -= 100;
     }
-
-    pinMode(buzzPin, INPUT);
-    digitalWrite(buzzPin, LOW);
+    halloActive = 0;
+    noTone(buzzPin);
     Serial.print("  I should be off now   : ");
     Serial.println(buzzDis);
 
-  } else if (buzzDis >= 50 ) {
-    pinMode(buzzPin, OUTPUT);
-    xtone = 200;
-    tone(buzzPin, xtone);
-  } else if (buzzDis < 50) {
-    pinMode(buzzPin, OUTPUT);
-    xtone += buzzDis + 75;
-    tone(buzzPin, xtone);
-    if (xtone > 5000) {
-      xtone = 200;
-    }
-    Serial.println("Tone");
-    Serial.println(xtone);
-  }
-
+  } else if (buzzDis <= 125) {
+    halloActive = 1;
+  } 
+  Serial.println("Tone");
+  Serial.println(xtone);
 }
